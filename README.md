@@ -12,8 +12,8 @@ Before starting the installation, ensure you have the following requirements:
 2. **Python**: Version `>= 3.10` and `< 3`.14 (Recommended: Python 3.12).
 3. `uv` **Package Manager**: Used to manage the virtual environment and dependencies quickly. 
 4. **API Keys**:
-    - <sup>**DeepSeek API Key** (for the LLM agents).</sup>
-    - <sup>**FRED API Key** (for vintage economic data).</sup>
+    <br><sup>- **DeepSeek API Key** (for the LLM agents).</sup>
+    <br><sup>- **FRED API Key** (for vintage economic data).</sup>
 
 ## Environment Configuration (Variables)
 
