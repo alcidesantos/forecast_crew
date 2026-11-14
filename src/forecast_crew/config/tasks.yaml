@@ -1,0 +1,69 @@
+tarefa_evidencia:
+  description: >
+    Lê atentamente o seguinte pacote de evidência fornecido:
+    {pacote_evidencia}
+    A tua tarefa é organizar e resumir esta informação em 5 a 10 pontos-chave focados em economia, tensões sociais e políticas públicas.
+    NÃO podes acrescentar informação externa. Usa apenas o texto acima.
+  expected_output: >
+    Um resumo estruturado em Markdown com os pontos-chave extraídos do texto fornecido.
+  agent: analista_base_rates
+
+tarefa_estimativa_ortodoxa:
+  description: >
+    Com base no pacote de evidência, estima a probabilidade (0–100%) de {tipo_evento} nos {pais} em {horizonte}.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Uma justificação breve e a linha final obrigatória.
+  agent: economista_ortodoxo
+  context: [tarefa_evidencia]
+
+tarefa_estimativa_marxista:
+  description: >
+    Com base no pacote de evidência, estima a probabilidade (0–100%) de {tipo_evento} nos {pais} em {horizonte}.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Uma justificação breve e a linha final obrigatória.
+  agent: economista_marxista
+  context: [tarefa_evidencia]
+
+tarefa_estimativa_social_democrata:
+  description: >
+    Com base no pacote de evidência, estima a probabilidade (0–100%) de {tipo_evento} nos {pais} em {horizonte}.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Uma justificação breve e a linha final obrigatória.
+  agent: sociologo_social_democrata
+  context: [tarefa_evidencia]
+
+tarefa_estimativa_libertario:
+  description: >
+    Com base no pacote de evidência, estima a probabilidade (0–100%) de {tipo_evento} nos {pais} em {horizonte}.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Uma justificação breve e a linha final obrigatória.
+  agent: analista_libertario
+  context: [tarefa_evidencia]
+
+tarefa_estimativa_base_rates:
+  description: >
+    Com base no pacote de evidência, estima a probabilidade (0–100%) de {tipo_evento} nos {pais} em {horizonte}.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Uma justificação breve e a linha final obrigatória.
+  agent: analista_base_rates
+  context: [tarefa_evidencia]
+
+tarefa_agregacao:
+  description: >
+    Agrega as cinco estimativas (Ortodoxa, Marxista, Social-Democrata, Libertária e Base Rates) numa estimativa final.
+    Apresenta a média, a dispersão entre perfis e uma discussão da incerteza ideológica.
+    OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
+  expected_output: >
+    Um relatório em Markdown com a estimativa final e a linha obrigatória no fim.
+  agent: redator
+  context:
+    - tarefa_estimativa_ortodoxa
+    - tarefa_estimativa_marxista
+    - tarefa_estimativa_social_democrata
+    - tarefa_estimativa_libertario
+    - tarefa_estimativa_base_rates

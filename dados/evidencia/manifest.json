@@ -1,0 +1,31 @@
+{
+  "Franca_2018": {
+    "data_corte": "2018-10-01",
+    "fred_series": {
+      "Taxa de Desemprego": "LRHUTTTTFRM156S",
+      "PIB (crescimento %)": "CLVMNACSCAB1GQFR",
+      "Inflação (IPC)": "CP0000FRM086NEST"
+    },
+    "wiki_revid": 860567514,
+    "gdelt_artigos": 0
+  },
+  "Ucrania_2013": {
+    "data_corte": "2013-10-01",
+    "fred_series": {
+      "PIB (crescimento %)": "UKRNGDPRSAXDCQ",
+      "Taxa de Desemprego": "LRHUTTTTUAM156S"
+    },
+    "wiki_revid": 574646099,
+    "gdelt_artigos": 0
+  },
+  "EUA_2007": {
+    "data_corte": "2007-10-01",
+    "fred_series": {
+      "Taxa de Desemprego": "UNRATE",
+      "PIB (crescimento %)": "A191RL1Q225SBEA",
+      "Índice Case-Shiller": "CSUSHPINSA"
+    },
+    "wiki_revid": 161403213,
+    "gdelt_artigos": 0
+  }
+}
