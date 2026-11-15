@@ -1,3 +1,6 @@
+# Autor
+Alcides Santos 250000693
+
 # Forecast Crew: Multi-Agent System for Sociopolitical Event Forecasting
 
 This repository contains the source code and methodology of a multi-agent system developed for the **Intelligent Agents and Multi-Agent Systems** course (5th Semester, Systems Engineering).
