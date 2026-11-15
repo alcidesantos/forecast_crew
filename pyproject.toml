@@ -5,7 +5,11 @@ description = "proto_2007_eua using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[tools]>=1.15.35,<2.0.0"
+    "crewai[tools]>=1.15.35,<2.0.0",
+    "curl-cffi>=0.17.0",
+    "feedparser>=6.0.14",
+    "gdeltdoc>=1.12.0",
+    "google-cloud-bigquery>=3.47.0",
 ]
 
 [project.scripts]

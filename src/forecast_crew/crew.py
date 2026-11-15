@@ -44,6 +44,10 @@ class ForecastCrew():
     def redator(self) -> Agent:
         return Agent(config=self.agents_config['redator'], llm=self._llm(), verbose=True)
 
+    @agent
+    def auditor(self) -> Agent:
+        return Agent(config=self.agents_config['auditor'], llm=self._llm(), verbose=True)
+
     # ----- Tarefas -----
     @task
     def tarefa_evidencia(self) -> Task:
@@ -70,8 +74,13 @@ class ForecastCrew():
         return Task(config=self.tasks_config['tarefa_estimativa_base_rates'])
 
     @task
+    def tarefa_auditoria(self) -> Task:
+        return Task(config=self.tasks_config['tarefa_auditoria'])
+
+    @task
     def tarefa_agregacao(self) -> Task:
         return Task(config=self.tasks_config['tarefa_agregacao'])
+
 
     # ----- Crew -----
     @crew

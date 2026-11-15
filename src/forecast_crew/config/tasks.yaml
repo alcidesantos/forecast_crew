@@ -53,10 +53,27 @@ tarefa_estimativa_base_rates:
   agent: analista_base_rates
   context: [tarefa_evidencia]
 
+tarefa_auditoria:
+  description: >
+    Analisa as estimativas dos cinco perfis. 
+    Para cada perfil, verifica se ele mencionou algum facto que não esteja no Pacote de Evidência.
+    Lista todas as alucinações encontradas. Se um perfil estiver 100% ancorado na evidência, diz "Perfil X: Aprovado".
+  expected_output: >
+    Um relatório de auditoria em Markdown que lista as alucinações detetadas por perfil (ou atesta a sua inexistência).
+  agent: auditor
+  context:
+    - tarefa_evidencia
+    - tarefa_estimativa_ortodoxa
+    - tarefa_estimativa_marxista
+    - tarefa_estimativa_social_democrata
+    - tarefa_estimativa_libertario
+    - tarefa_estimativa_base_rates
+
 tarefa_agregacao:
   description: >
-    Agrega as cinco estimativas (Ortodoxa, Marxista, Social-Democrata, Libertária e Base Rates) numa estimativa final.
+    Agrega as cinco estimativas numa estimativa final.
     Apresenta a média, a dispersão entre perfis e uma discussão da incerteza ideológica.
+    Tem em conta o relatório de auditoria (se algum agente alucinou, avisa no texto).
     OBRIGATÓRIO: A tua resposta deve terminar EXATAMENTE com esta linha: "ESTIMATIVA_FINAL: [número]".
   expected_output: >
     Um relatório em Markdown com a estimativa final e a linha obrigatória no fim.
@@ -67,3 +84,4 @@ tarefa_agregacao:
     - tarefa_estimativa_social_democrata
     - tarefa_estimativa_libertario
     - tarefa_estimativa_base_rates
+    - tarefa_auditoria

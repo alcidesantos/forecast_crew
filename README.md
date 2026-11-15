@@ -121,3 +121,80 @@ The author also utilized an AI assistant (DeepSeek) to support the software engi
 *   **Role:** Assistance in writing the Python code (CrewAI framework, data pipeline scripts), debugging API errors (FRED/GDELT), brainstorming the evaluation metrics (Brier Score, Bootstrap), and structuring this document.
 *   **Academic Integrity:** All intellectual decisions regarding the experimental design, choice of historical scenarios, analysis of the empirical results, and final conclusions are solely the author's responsibility. The AI was used as a coding and structuring tool, not as a substitute for critical thinking or scientific authorship.
 
+
+
+
+
+
+
+
+
+
+
+## 🔐 Configuração e Autenticação (Google BigQuery / GDELT)
+
+Este projeto acede aos dados históricos do **GDELT Project** diretamente através do **Google BigQuery** (`gdelt-bq.gdeltv2.gkg_partitioned`), evitando limites de pedidos HTTP da API pública. 
+
+Para executar o script noutro computador, é necessário configurar uma conta Google Cloud (o modo *Sandbox* oferece **1 TB de consultas gratuitas por mês** sem necessidade de cartão de crédito) e escolher **um dos dois métodos de autenticação** abaixo.
+
+---
+
+### Pré-requisito: Criar um Projeto no Google Cloud
+1. Aceda à [Consola Google Cloud - BigQuery](https://google.com).
+2. Inicie sessão com uma conta Google e crie um novo projeto (ex: `forecast-crew-academic`).
+3. Anote o **ID do Projeto** (*Project ID*) gerado.
+
+---
+
+### Método 1: Autenticação via Linha de Comandos (Recomendado para uso local)
+
+Ideal para configurar rapidamente a máquina de desenvolvimento sem gerir ficheiros de chaves.
+
+1. Instale a ferramenta de linha de comandos **Google Cloud CLI** (`gcloud`) seguindo as [instruções oficiais](https://google.com).
+2. No terminal, autentique a sua conta e associe o projeto de quota:
+   ```bash
+   gcloud auth application-default login
+   gcloud config set project SEU_PROJECT_ID
+   gcloud auth application-default set-quota-project SEU_PROJECT_ID
+   ```
+3. Certifique-se de que o código inicializa o cliente com o seu ID de projeto:
+   ```python
+   bq_client = bigquery.Client(project="SEU_PROJECT_ID")
+   ```
+
+---
+
+### Método 2: Autenticação via Service Account e Ficheiro JSON (Recomendado para servidores ou partilha)
+
+Ideal para correr o código num servidor, container ou outro computador sem necessidade de instalar a CLI `gcloud` nem abrir o navegador.
+
+1. **Criar a Conta de Serviço:**
+   * Aceda a **IAM e Administração > Contas de Serviço** (*Service Accounts*) na [Consola Google Cloud](https://google.com).
+   * Clique em **+ Criar Conta de Serviço**, atribua um nome (ex: `gdelt-reader`) e clique em **Criar e Continuar**.
+   * No passo de permissões (*Conceder acesso a este projeto*), adicione o papel **Utilizador de Tarefas do BigQuery** (*BigQuery Job User*). Clique em **Concluir**.
+
+2. **Gerar e Guardar a Chave JSON:**
+   * Na lista de contas de serviço, clique na conta acabada de criar e aceda ao separador **Chaves** (*Keys*).
+   * Clique em **Adicionar Chave > Criar nova chave**, selecione **JSON** e clique em **Criar**.
+   * O ficheiro será descarregado automaticamente. Renomeie-o para `gcp_key.json` e coloque-o na raiz do projeto (ou numa pasta segura).
+
+3. **Configurar a Variável de Ambiente (`.env`):**
+   * Adicione o caminho do ficheiro ao seu `.env`:
+     ```env
+     GOOGLE_APPLICATION_CREDENTIALS="gcp_key.json"
+     GCP_PROJECT_ID="SEU_PROJECT_ID"
+     ```
+   * *(Nota: Nunca envie o ficheiro `gcp_key.json` para repositórios públicos. Adicione `gcp_key.json` ao seu `.gitignore`).*
+
+4. **Utilização no Código Python:**
+   O SDK do Google deteta automaticamente a variável `GOOGLE_APPLICATION_CREDENTIALS`, ou pode carregá-la explicitamente:
+   ```python
+   import os
+   from google.cloud import bigquery
+
+   # Carrega automaticamente via GOOGLE_APPLICATION_CREDENTIALS ou explicitamente:
+   if os.path.exists("gcp_key.json"):
+       bq_client = bigquery.Client.from_service_account_json("gcp_key.json")
+   else:
+       bq_client = bigquery.Client(project=os.getenv("GCP_PROJECT_ID"))
+   ```

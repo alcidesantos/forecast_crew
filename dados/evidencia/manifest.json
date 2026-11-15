@@ -1,23 +1,4 @@
 {
-  "Franca_2018": {
-    "data_corte": "2018-10-01",
-    "fred_series": {
-      "Taxa de Desemprego": "LRHUTTTTFRM156S",
-      "PIB (crescimento %)": "CLVMNACSCAB1GQFR",
-      "Inflação (IPC)": "CP0000FRM086NEST"
-    },
-    "wiki_revid": 860567514,
-    "gdelt_artigos": 0
-  },
-  "Ucrania_2013": {
-    "data_corte": "2013-10-01",
-    "fred_series": {
-      "PIB (crescimento %)": "UKRNGDPRSAXDCQ",
-      "Taxa de Desemprego": "LRHUTTTTUAM156S"
-    },
-    "wiki_revid": 574646099,
-    "gdelt_artigos": 0
-  },
   "EUA_2007": {
     "data_corte": "2007-10-01",
     "fred_series": {
@@ -26,6 +7,60 @@
       "Índice Case-Shiller": "CSUSHPINSA"
     },
     "wiki_revid": 161403213,
+    "gdelt_query": "subprime housing crisis",
     "gdelt_artigos": 0
+  },
+  "Franca_2018": {
+    "data_corte": "2018-10-01",
+    "fred_series": {
+      "Taxa de Desemprego": "LRHUTTTTFRM156S"
+    },
+    "wiki_revid": 860567514,
+    "gdelt_query": "protest tax fuel",
+    "gdelt_artigos": 10
+  },
+  "Ucrania_2013": {
+    "data_corte": "2013-10-01",
+    "fred_series": {},
+    "wiki_revid": 574646099,
+    "gdelt_query": "EU Russia protest",
+    "gdelt_artigos": 0
+  },
+  "Egito_2010": {
+    "data_corte": "2010-10-01",
+    "fred_series": {},
+    "wiki_revid": 387514681,
+    "gdelt_query": "protest election economy",
+    "gdelt_artigos": 0
+  },
+  "Siria_2011": {
+    "data_corte": "2011-01-01",
+    "fred_series": {},
+    "wiki_revid": 405013318,
+    "gdelt_query": "protest unrest government",
+    "gdelt_artigos": 0
+  },
+  "Siria_2024": {
+    "data_corte": "2024-10-01",
+    "fred_series": {},
+    "wiki_revid": 1247634923,
+    "gdelt_query": "Assad regime fall rebel",
+    "gdelt_artigos": 10
+  },
+  "Portugal_2025": {
+    "data_corte": "2025-10-01",
+    "fred_series": {
+      "Taxa de Desemprego": "LRHUTTTTPTM156S"
+    },
+    "wiki_revid": 1314209175,
+    "gdelt_query": "housing crisis rent protest",
+    "gdelt_artigos": 10
+  },
+  "Irao_2025": {
+    "data_corte": "2025-10-01",
+    "fred_series": {},
+    "wiki_revid": 1314027966,
+    "gdelt_query": "tension USA military strike",
+    "gdelt_artigos": 10
   }
 }
