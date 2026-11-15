@@ -14,8 +14,10 @@ from google.cloud import bigquery
 
 load_dotenv()
 
-# NOTA: Para correr este script, a máquina precisa de ter as credenciais do Google Cloud configuradas.
-bq_client = bigquery.Client(project="forecast-crew-academic")
+if os.path.exists("gcp_key.json"):
+    bq_client = bigquery.Client.from_service_account_json("gcp_key.json")
+else:
+    bq_client = bigquery.Client(project=os.getenv("GCP_PROJECT_ID"))
 
 HEADERS = {"User-Agent": "ForecastCrewAcademic/1.0 (academic research project)"}
 
